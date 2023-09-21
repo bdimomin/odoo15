@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="management_tree_view" model="ir.ui.view">
+        <field name="name">management.management.tree</field>
+        <field name="model">management.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="id_number" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="management_form_view" model="ir.ui.view">
+        <field name="name">management.management.form</field>
+        <field name="model">management.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name"/>
+                            <field name="id_number"/>
+                            <field name="gender" string = "Gender"/> 
+                        </group>
+                        <group>
+                            <field name="phone" string = "Contact"/>   
+                            <field name="about"/>      
+                            
+                        </group>
+                          
+                    </group>
+                    <notebook>
+                        <page string="Student">
+                            <field name="student_id">
+                                <tree string="Student">
+                                    <field name="roll" />
+                                    <field name="name" />
+                                    <field name="age" />
+                                </tree>
+                            </field>
+                        </page>
+                         <page string="Teacher">
+                            <field name="teacher_id">
+                                <tree string="Teacher">
+                                    <field name="id_number" />
+                                    <field name="name" />
+                                    <field name="phone" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    
+                </sheet>
+               
+            </form>
+            
+        </field>
+    </record>
+
+    <record id="management_action" model="ir.actions.act_window">
+        <field name="name">Management</field>
+        <field name="res_model">management.management</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">teacher</field>
+        <field name="res_model">teacher.teacher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="management_menu" name="BDtask School" sequence="1"/>
+    <menuitem id="management_sub_menu" name="Management" parent="management_menu" action="management_action" sequence="1"/>
+    <menuitem id="teacher_sub_menu" name="Teacher" parent="management_sub_menu" action="teacher_action" />
+    <menuitem id="student_sub_menu" name="Student" parent="management_sub_menu" action="student_action" />
+    
+</odoo>
